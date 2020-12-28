@@ -24,15 +24,9 @@
         <head>
             <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
         </head>
-        <input type="text" id="textinput" name="textinput" autofocus style="display:inline; position:absolute; z-index: 2; top:80px; left: 80px; height:727px; width: 487px;">
+        <input type="text" id="textinput" name="textinput" autofocus onblur="focus();" style="display:inline; position:absolute; z-index: 1; top:80px; left: 80px; height:727px; width: 487px;">
 
-        <script>
-            input.onblur = function() {
-                input.focus();
-            };
-          </script>
-
-        <canvas id="canvas" width="1500" height="1000" style="position:absolute;">
+        <canvas id="canvas" width="1500" height="1000" style="position:absolute; z-index: 2;">
         </canvas>
 
         <script src="src/paint.js"></script>
