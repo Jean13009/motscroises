@@ -6,8 +6,6 @@ class Listener {
         this.keyPressed = '';
     }
 
-
-
     mouseListener () {
         canvas.addEventListener('mousedown', e => {
             var BB=canvas.getBoundingClientRect();
