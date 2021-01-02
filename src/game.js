@@ -71,6 +71,16 @@ class coreGame {
         else
         return false;
     }
+
+    decouvrirCase () {
+        if (this.grilleSelect[1] != 'Nan') {
+            let keyPress = '';
+            keyPress = this.grilleComplete[this.grilleSelect[0]][this.grilleSelect[1]];
+            this.majGrilleJoueur(keyPress);
+        }
+
+    }
+
     majGrilleSelect (x, y) {
         if (this.grilleSelect[1] != 'Nan')
         this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'w';

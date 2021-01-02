@@ -80,7 +80,10 @@ class Paint {
             if (jeu.grilleSelect[1] == i && jeu.currentDirection == 'v')
             ctx.font = 'bold 16px serif';
             lettre = String.fromCharCode('A'.charCodeAt(0)+i);
-            ctx.fillText(lettre+'. '+definitionsV[i], this.emplacementHorizontal + 100 + this.nbColonnes*this.tailleCase, this.emplacementVertical + 10 + (definitionsH.length+1)*this.tailleCase/2 + i*(this.tailleCase/2));
+                    ctx.fillStyle = 'black';
+        ctx.font = '44px serif';
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
             if (jeu.grilleSelect[1] == i)
             ctx.font = '16px serif';
         }
@@ -93,6 +96,14 @@ class Paint {
         let chiffre = 0;
         let lettre;
         ctx.strokeRect(this.emplacementHorizontal, this.emplacementVertical, this.nbColonnes*this.tailleCase, this.nbLignes*this.tailleCase);
+
+        ctx.strokeRect(0, 0, this.tailleCase, this.tailleCase);
+        ctx.fillStyle = 'black';
+        ctx.font = '44px serif';
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText('?', this.tailleCase / 2, this.tailleCase / 2);
+
         for (let i=0; i<this.nbColonnes; i++) {
             ctx.beginPath();
             ctx.moveTo(this.emplacementHorizontal + this.tailleCase*(i+1), this.emplacementVertical);
