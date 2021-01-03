@@ -11,33 +11,33 @@ class Paint {
     }
     drawMouseSelect(grilleJoueur) {
         for (var i = 0; i < grilleJoueur.length; i++) {
-           for (var j = 0; j < grilleJoueur[0].length; j++) {
-              if (grilleJoueur[i][j][1] == 'r') {
-                   ctx.fillStyle = 'red';
-                   ctx.fillStyle = 1;
-                   ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
-               }
-             else if (grilleJoueur[i][j][1] == 'b') {
-                ctx.fillStyle = 'black';
-                ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
-             }
-             else if (jeu.grilleSelect[0] == i && jeu.currentDirection == 'h') {
-                ctx.fillStyle = 'pink';
-                ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
-             }
-             else if (jeu.grilleSelect[1] == j && jeu.currentDirection == 'v') {
-                ctx.fillStyle = 'pink';
-                ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
-             }
-             else {
-                ctx.fillStyle = 'white';
-                ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
-             }   
+            for (var j = 0; j < grilleJoueur[0].length; j++) {
+                if (grilleJoueur[i][j][1] == 'r') {
+                    ctx.fillStyle = 'red';
+                    ctx.fillStyle = 1;
+                    ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
+                }
+                else if (grilleJoueur[i][j][1] == 'b') {
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
+                }
+                else if (jeu.grilleSelect[0] == i && jeu.currentDirection == 'h') {
+                    ctx.fillStyle = 'pink';
+                    ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
+                }
+                else if (jeu.grilleSelect[1] == j && jeu.currentDirection == 'v') {
+                    ctx.fillStyle = 'pink';
+                    ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
+                }
+                else {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(this.emplacementHorizontal + j*this.tailleCase + ctx.lineWidth / 2, this.emplacementVertical + i*this.tailleCase + ctx.lineWidth / 2, this.tailleCase - ctx.lineWidth, this.tailleCase - ctx.lineWidth);
+                }   
             }
         }
         this.drawLetter(grilleJoueur);
     }
-
+    
     drawLetter(grilleJoueur) {
         ctx.fillStyle = 'black';
         ctx.font = '44px serif';
@@ -46,11 +46,11 @@ class Paint {
         for (var i = 0; i < grilleJoueur[0].length; i++) {
             for (var j = 0; j < grilleJoueur.length; j++) {
                 ctx.fillText(grilleJoueur[j][i][0], this.emplacementHorizontal + this.tailleCase / 2 + i*this.tailleCase, this.emplacementVertical + this.tailleCase / 1.9 + j*this.tailleCase);
-             }
-         }
-         jeu.checkVictory();
+            }
+        }
+        jeu.checkVictory();
     }
-
+    
     drawDef(definitionsH, definitionsV) {
         let lettre;
         let chiffre = 0;
@@ -69,7 +69,7 @@ class Paint {
             if (jeu.grilleSelect[0] == i)
             ctx.font = '16px serif';
         }
-
+        
         ctx.fillStyle = 'black';
         ctx.font = 'bold 18px serif';
         ctx.textAlign = "left";
@@ -85,22 +85,22 @@ class Paint {
             ctx.font = '16px serif';
         }
     }
-
+    
     drawGrid() {
-
+        
         ctx.fillStyle = 'black';
         ctx.lineWidth = 2;
         let chiffre = 0;
         let lettre;
         ctx.strokeRect(this.emplacementHorizontal, this.emplacementVertical, this.nbColonnes*this.tailleCase, this.nbLignes*this.tailleCase);
-
+        
         ctx.strokeRect(0, 0, this.tailleCase, this.tailleCase);
         ctx.fillStyle = 'black';
         ctx.font = '44px serif';
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText('?', this.tailleCase / 2, this.tailleCase / 2);
-
+        
         for (let i=0; i<this.nbColonnes; i++) {
             ctx.beginPath();
             ctx.moveTo(this.emplacementHorizontal + this.tailleCase*(i+1), this.emplacementVertical);
@@ -133,7 +133,7 @@ class Paint {
         }
         this.drawDef(jeu.definitionsH, jeu.definitionsV);
     }
-
-
+    
+    
 }
 

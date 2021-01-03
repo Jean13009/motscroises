@@ -14,7 +14,7 @@ class coreGame {
             ['B','E','T','A',0,'I','O','N'],
             ['O',0,'A','C','C','R','U','E'],
             ['T','A',0,'E','P','E','E','S']
-         ];
+        ];
         this.definitionsH = [
             "Il nous font de l'ombre.",
             "Stérilisée à la vapeur.",
@@ -39,48 +39,48 @@ class coreGame {
             "Général orienté au sud. Désert de cailloux. Pris à bail.",
             "Paysans du Moyen Age. Attributs de roses"
         ];
-    
-    var arr = [];
-    var rows = 12;
-    var columns = 8;
-    for (var i = 0; i < rows; i++) {
-        arr.push([0])
-        for (var j = 0; j < columns; j++) {
-            if (this.grilleComplete[i][j] == 0)
+        
+        var arr = [];
+        var rows = 12;
+        var columns = 8;
+        for (var i = 0; i < rows; i++) {
+            arr.push([0])
+            for (var j = 0; j < columns; j++) {
+                if (this.grilleComplete[i][j] == 0)
                 arr[i][j] = ['', 'b'];
-            else
+                else
                 arr[i][j] = ['', 'w'];
+            }
         }
+        this.grilleJoueur = arr;
+        this.grilleSelect = ['Nan', 'Nan'];
+        this.currentDirection = 'h';
+        
     }
-    this.grilleJoueur = arr;
-    this.grilleSelect = ['Nan', 'Nan'];
-    this.currentDirection = 'h';
-
-    }
-
+    
     checkGridLimitH(Pos) {
         if (Pos < 8 && Pos >= 0 )
-            return true;
+        return true;
         else
         return false;
     }
-
+    
     checkGridLimitV(Pos) {
         if (Pos < 12 && Pos >= 0 )
-            return true;
+        return true;
         else
         return false;
     }
-
+    
     decouvrirCase () {
         if (this.grilleSelect[1] != 'Nan') {
             let keyPress = '';
             keyPress = this.grilleComplete[this.grilleSelect[0]][this.grilleSelect[1]];
             this.majGrilleJoueur(keyPress);
         }
-
+        
     }
-
+    
     majGrilleSelect (x, y) {
         if (this.grilleSelect[1] != 'Nan')
         this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'w';
@@ -96,48 +96,48 @@ class coreGame {
         jeuDraw.drawMouseSelect(this.grilleJoueur);
         jeuDraw.drawDef(this.definitionsH, this.definitionsV);
     }
-
-
+    
+    
     moveCursorH(cursor) {
         if (this.checkGridLimitH([this.grilleSelect[1] + cursor])) {
             if (this.grilleComplete[this.grilleSelect[0]][this.grilleSelect[1] + cursor] == 0){
                 this.moveCursorH(cursor*2);
-                }
+            }
             else {
-            this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'w';
-            this.grilleSelect[1] = this.grilleSelect[1] + cursor;
-            this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'r';
-            jeuDraw.drawMouseSelect(this.grilleJoueur);
+                this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'w';
+                this.grilleSelect[1] = this.grilleSelect[1] + cursor;
+                this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'r';
+                jeuDraw.drawMouseSelect(this.grilleJoueur);
             }
         }
         else {
-        jeuDraw.drawMouseSelect(this.grilleJoueur);
+            jeuDraw.drawMouseSelect(this.grilleJoueur);
         }
     }
-
+    
     moveCursorV(cursor) {
         if (this.checkGridLimitV([this.grilleSelect[0] + cursor])) {
             if (this.grilleComplete[this.grilleSelect[0] + cursor][this.grilleSelect[1]] == 0){
                 this.moveCursorV(cursor*2);
-                }
+            }
             else {
-            this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'w';
-            this.grilleSelect[0] = this.grilleSelect[0] + cursor;
-            this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'r';
-            jeuDraw.drawMouseSelect(this.grilleJoueur);
+                this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'w';
+                this.grilleSelect[0] = this.grilleSelect[0] + cursor;
+                this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][1] = 'r';
+                jeuDraw.drawMouseSelect(this.grilleJoueur);
             }
         }
         else {
-        jeuDraw.drawMouseSelect(this.grilleJoueur);
+            jeuDraw.drawMouseSelect(this.grilleJoueur);
         }
     }
-
+    
     majGrilleJoueur (keyPressed) {
         let cursor = 1;
         if(keyPressed == 'Backspace'){
             this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1]][0] = '';
             if (this.currentDirection == 'h' && this.checkGridLimitH([this.grilleSelect[1] - 1])) {
-            this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1] - 1][0] = '';
+                this.grilleJoueur[this.grilleSelect[0]][this.grilleSelect[1] - 1][0] = '';
             }
             else if (this.currentDirection == 'v' && this.checkGridLimitV([this.grilleSelect[0] - 1])) {
                 this.grilleJoueur[this.grilleSelect[0] - 1][this.grilleSelect[1]][0] = '';
@@ -151,7 +151,7 @@ class coreGame {
         else if (this.currentDirection == 'v')
         this.moveCursorV(cursor);
     }
-
+    
     checkVictory () {
         let win = 1;
         for (var i = 0; i < this.grilleComplete.length; i++) {
@@ -164,14 +164,14 @@ class coreGame {
         if (win)
         alert('Grille complétée');
     }
-
+    
     start () {
         jeuDraw.drawGrid();
         jeuListener.mouseListener();
         jeuListener.keyListener();
         jeuDraw.drawMouseSelect(this.grilleJoueur);
     }
-
+    
 }
 
 let jeu = new coreGame();
