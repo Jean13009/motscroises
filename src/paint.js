@@ -80,10 +80,7 @@ class Paint {
             if (jeu.grilleSelect[1] == i && jeu.currentDirection == 'v')
             ctx.font = 'bold 16px serif';
             lettre = String.fromCharCode('A'.charCodeAt(0)+i);
-                    ctx.fillStyle = 'black';
-        ctx.font = '44px serif';
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
+            ctx.fillText(lettre+'. '+definitionsV[i], this.emplacementHorizontal + 100 + this.nbColonnes*this.tailleCase, this.emplacementVertical + 10 + (definitionsH.length+1)*this.tailleCase/2 + i*(this.tailleCase/2));
             if (jeu.grilleSelect[1] == i)
             ctx.font = '16px serif';
         }
